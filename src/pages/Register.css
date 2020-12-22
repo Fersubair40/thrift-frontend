@@ -1,0 +1,21 @@
+.splash {
+    /* background-image: url("../images/splash.png"); */
+    width: 90%;
+    height: 80vh;
+}
+
+
+@media (max-width:480px) {
+    .img {
+        display: none
+    }
+
+    /* smartphones, iPhone, portrait 480x320 phones */
+}
+
+@media (min-width:1025px) {
+    .form {
+        margin-top: 170px;
+    }
+    /* big landscape tablets, laptops, and desktops */
+}

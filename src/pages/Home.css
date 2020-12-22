@@ -1,0 +1,23 @@
+@media (min-width:1025px) {
+    .navs {
+        margin-right: 800PX;
+        /* margin-left: 200px; */
+    }
+
+    .card {
+        width: 18rem !important;
+    }
+}
+
+.marg {
+    margin-right: 20px;
+}
+
+.alerts {
+    margin: 10px 50px !important;
+}
+
+.modal-form{
+    padding: 10px  50px 50px !important;
+} 
+
