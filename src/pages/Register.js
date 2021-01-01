@@ -12,6 +12,7 @@ const initialValues = {
   username: "",
   fullname: "",
   mobile_Number: "",
+  _package: "",
 };
 
 export default function Register() {
@@ -89,7 +90,7 @@ export default function Register() {
               )}
               {errorMessage && errorMessage !== "" && (
                 <div
-                  className="alert alert-danger"
+                  className="alert alert-info"
                   isOpen={visible}
                   toggle={onDismiss}
                   role="alert"
@@ -131,6 +132,9 @@ export default function Register() {
                   }
                   if (!values.mobile_number) {
                     errors.mobile_Number = "Mobile Number is required";
+                  }
+                  if (!values._package) {
+                    errors._package = "You must pick a Package";
                   }
                   setvalidationErrors({ ...errors });
                   return errors;
@@ -200,7 +204,7 @@ export default function Register() {
                       />
                     </div>
 
-                    <div class="col-md-6">
+                    <div className="col-md-6">
                       <label for="mobile" class="form-label">
                         Mobile Number
                       </label>
@@ -212,6 +216,25 @@ export default function Register() {
                         onBlur={handleBlur}
                         value={values.mobile_number}
                       />
+                    </div>
+                    <div className="col-md-6">
+                      <label for="_package" class="form-label">
+                        Select Package
+                      </label>
+                      <select
+                        className="form-control"
+                        id="_package"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values._package}
+                      >
+                        <option value="">Select A Package</option>
+                        <option value="STANDARD">Standard</option>
+                        <option value="PREMIUM">Premium</option>
+                        <option value="PLATINUM">Platinum</option>
+                        <option value="GOLD">Gold</option>
+                        <option value="DIAMOND">Diamond</option>
+                      </select>
                     </div>
                     <div class="col-12">
                       {isSubmitting ? (

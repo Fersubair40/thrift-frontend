@@ -64,12 +64,13 @@ export default function Home() {
                   <div className="card-body">
                     <h3 className="card-title">{user.Account_Balance}</h3>
                     <h5 className="card-title">{user.FullName}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
+                    <h6 className="card-subtitle mb-2 text-dark">
                       Accoount Number:{" "}
-                      <span className="font-weight-bold text-black">
+                      <span className="font-weight-bold text-dark">
                         {user.Account_Number}
                       </span>
                     </h6>
+                    <p className="card-text">Package: <span className="text-dark"> {user.package} </span> </p>
                     <p className="card-text">{user.Mobile_Number}</p>
                     <Link className="text-black" to={`/account/?userId=${user.slug}`} > View Transactions </Link>
                   </div>

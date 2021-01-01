@@ -84,7 +84,7 @@ export default function UserDetails() {
 
   return (
     <>
-      <di className="container">
+      <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light ">
           <div className="container">
             <a className="navbar-brand navs" href="#">
@@ -109,7 +109,7 @@ export default function UserDetails() {
                 <li className="nav-item marg">
                   <button
                     type="button"
-                    class="btn btn-outline-success"
+                    className="btn btn-outline-success"
                     onClick={() => {
                       setShowDepositModal(true);
                     }}
@@ -120,7 +120,7 @@ export default function UserDetails() {
                 <li className="nav-item">
                   <button
                     type="button"
-                    class="btn btn-outline-danger"
+                    className="btn btn-outline-danger"
                     onClick={() => {
                       showWithdrawModal(true);
                     }}
@@ -132,7 +132,7 @@ export default function UserDetails() {
             </div>
           </div>
         </nav>
-      </di>
+      </div>
       <div className="container">
         <div className="row\">
           {data.map((user) => {
@@ -140,11 +140,11 @@ export default function UserDetails() {
               <div key={user.slug} className="col-md-6 mt-4">
                 <div
                   className="shadow p-3 mb-5 rounded"
-                  style={{ width: "100%", backgroundColor: "##525f7f" }}
+                  style={{ backgroundColor: "##525f7f" }}
                 >
                   <div className="card-body">
                     <table className="table align-items-center">
-                      <thead className="mb-5"> ACOOUNT INFOMATION </thead>
+                      {/* <thead className="mb-5"> ACOOUNT INFOMATION </thead> */}
                       <tbody className="mt-5">
                         <tr>
                           <th>ACOOUNT NAME</th>
@@ -166,11 +166,11 @@ export default function UserDetails() {
                           <td> {user.Mobile_Number} </td>
                           <td></td>
                         </tr>
-                        <tr>
+                        {/* <tr>
                           <th>Email</th>
                           <td> {user.email} </td>
                           <td></td>
-                        </tr>
+                        </tr> */}
                       </tbody>
                     </table>
                   </div>
@@ -192,8 +192,6 @@ export default function UserDetails() {
                   <thead>
                     <tr>
                       <th scope="col">Amount</th>
-
-                      {/* <th scope="col">Last</th> */}
                       <th className="marg" scope="col">
                         Transaction Type
                       </th>
@@ -262,7 +260,7 @@ export default function UserDetails() {
           <ModalBody>
             <form>
               <div className="form-group">
-                <label for="exampleInputEmail1" className="mb-3">
+                <label htmlFor="exampleInputEmail1" className="mb-3">
                   Amount
                 </label>
                 <input
@@ -351,7 +349,7 @@ export default function UserDetails() {
           <ModalBody>
             <form>
               <div className="form-group">
-                <label for="exampleInputEmail1" className="mb-3">
+                <label htmlFor="exampleInputEmail1" className="mb-3">
                   Amount
                 </label>
                 <input
