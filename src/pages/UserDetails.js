@@ -38,7 +38,7 @@ export default function UserDetails() {
         setTrandata(response.data.data[0].transactions);
       }
     })();
-  }, []);
+  }, [user_id]);
 
   const toggle = () => {
     setShowDepositModal(!showDepositModal);
