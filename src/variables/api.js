@@ -37,7 +37,7 @@ const Api = {
   getOneUser: async (user_id) => {
     try {
       const response = await axios.get(`/${user_id}/transactions`);
-      if (response.status == 200) {
+      if (response.status === 200) {
         return response;
       }
     } catch (err) {
