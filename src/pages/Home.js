@@ -17,13 +17,12 @@ export default function Home() {
     })();
   }, []);
 
-
   return (
     <div className="container ">
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container">
           <a className="navbar-brand navs" href="#">
-            Navbar
+            ThriftWithK
           </a>
           <button
             className="navbar-toggler"
@@ -54,30 +53,45 @@ export default function Home() {
       </nav>
       <div className="mt-5 cards">
         <div className="row">
-          {data.map((user) => {
-            return (
-              <div key={user.slug} className="col-sm-4 mb-2">
-                <div
-                  className="card shadow-lg p-3 mb-5 rounded"
-                  style={{ backgroundColor: "#fff0f0" }}
-                >
-                  <div className="card-body">
-                    <h3 className="card-title">{user.Account_Balance}</h3>
-                    <h5 className="card-title">{user.FullName}</h5>
-                    <h6 className="card-subtitle mb-2 text-dark">
-                      Accoount Number:{" "}
-                      <span className="font-weight-bold text-dark">
-                        {user.Account_Number}
-                      </span>
-                    </h6>
-                    <p className="card-text">Package: <span className="text-dark"> {user.package} </span> </p>
-                    <p className="card-text">{user.Mobile_Number}</p>
-                    <Link className="text-black" to={`/account/?userId=${user.slug}`} > View Transactions </Link>
+          {data && data.length >= 1 ? (
+            data.map((user) => (
+              <React.Fragment key={user.slug}>
+                <div key={user.slug} className="col-sm-4 mb-2">
+                  <div
+                    className="card shadow-lg p-3 mb-5 rounded"
+                    style={{ backgroundColor: "#fff0f0" }}
+                  >
+                    <div className="card-body">
+                      <h3 className="card-title">{user.Account_Balance}</h3>
+                      <h5 className="card-title">{user.FullName}</h5>
+                      <h6 className="card-subtitle mb-2 text-dark">
+                        Accoount Number:{" "}
+                        <span className="font-weight-bold text-dark">
+                          {user.Account_Number}
+                        </span>
+                      </h6>
+                      <p className="card-text">
+                        Package:{" "}
+                        <span className="text-dark"> {user.package} </span>{" "}
+                      </p>
+                      <p className="card-text">{user.Mobile_Number}</p>
+                      <Link
+                        className="text-black"
+                        to={`/account/?userId=${user.slug}`}
+                      >
+                        {" "}
+                        View Transactions{" "}
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              </React.Fragment>
+            ))
+          ) : (
+            <div className="container">
+              <p>You have not Addded Anyone Yet.</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

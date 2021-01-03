@@ -36,7 +36,7 @@ export default function Register() {
         <nav className="navbar navbar-expand-lg navbar-light ">
           <div className="container">
             <a className="navbar-brand navs" href="#">
-              Navbar
+              ThriftWithK
             </a>
             <button
               className="navbar-toggler"
@@ -77,7 +77,9 @@ export default function Register() {
           </div>
 
           <div className="col-md-6 mt-4">
+            
             <div className="form">
+            <h3> Register </h3>
               {successMessage && successMessage !== "" && (
                 <div
                   className="alert alert-success"
@@ -163,6 +165,7 @@ export default function Register() {
                   handleSubmit,
                   setFieldValue,
                 }) => (
+                  
                   <form className="row  g-3" onSubmit={handleSubmit}>
                     <div class="col-md-6">
                       <label for="inputEmail4" className="form-label">

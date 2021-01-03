@@ -1,6 +1,6 @@
 import React from "react";
 import Api from "../variables/api";
-
+import { Link } from "react-router-dom";
 import "./Home.css";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 
@@ -87,8 +87,9 @@ export default function UserDetails() {
       <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light ">
           <div className="container">
+            
             <a className="navbar-brand navs" href="#">
-              Navbar
+              ThriftWithK
             </a>
             <button
               className="navbar-toggler"
@@ -106,6 +107,11 @@ export default function UserDetails() {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav  mb-2 mb-lg-0 ml-auto">
+                <li className='nav-item marg'>
+                <Link className="nav-link text-dark " to="/">
+                    Home
+                  </Link>
+                </li>
                 <li className="nav-item marg">
                   <button
                     type="button"
@@ -147,17 +153,17 @@ export default function UserDetails() {
                       {/* <thead className="mb-5"> ACOOUNT INFOMATION </thead> */}
                       <tbody className="mt-5">
                         <tr>
-                          <th>ACOOUNT NAME</th>
+                          <th>ACCOUNT NAME</th>
                           <td> {user.FullName} </td>
                           <td></td>
                         </tr>
                         <tr>
-                          <th>ACCOUNT NUMBEr</th>
+                          <th>ACCOUNT NUMBER</th>
                           <td> {user.Account_Number} </td>
                           <td></td>
                         </tr>
                         <tr>
-                          <th> ACOOUNT BALANCE </th>
+                          <th> ACCOUNT BALANCE </th>
                           <td> {user.Account_Balance} </td>
                           <td></td>
                         </tr>
