@@ -147,7 +147,7 @@ export default function Register() {
                     ...values,
                   };
                   const response = await Api.register(values);
-                  if (response && response.status == 200) {
+                  if (response && response.status === 200) {
                     setsuccessMessage(response.msg);
                     history.push("/home");
                   } else {
