@@ -1,16 +1,18 @@
 import React from "react";
 import Api from "../variables/api";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./Home.css";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 
-export default function UserDetails() {
+export default function UserDetails({history}) {
   const [data, setData] = React.useState([]);
   const [trandata, setTrandata] = React.useState([]);
   const [showDepositModal, setShowDepositModal] = React.useState(false);
   const [withdrawModal, showWithdrawModal] = React.useState(false);
+  const [packageModal, setPackageModal] = React.useState(false)
 
   const [account_balance, setaccount_balance] = React.useState(parseInt(""));
+  const [_package, set_Package] = React.useState("")
 
   const [depositErrorMessage, setDepositErrorMessage] = React.useState("");
   const [validationErrors, setvalidationErrors] = React.useState({});
@@ -43,6 +45,7 @@ export default function UserDetails() {
   const toggle = () => {
     setShowDepositModal(!showDepositModal);
     showWithdrawModal(!withdrawModal);
+    setPackageModal(!packageModal)
     window.location.reload(false);
   };
 
@@ -81,6 +84,22 @@ export default function UserDetails() {
 
     setisSubmitting(false);
   };
+
+  const onSubmitPackage = async () =>{
+    setisSubmitting(true)
+
+    const data ={
+      _package,
+    }
+    const response = await Api.updatePackage(user_id, data);
+    if (response && response.status === 200) {
+      setDepositSuccessMessage(response.msg)
+      history.push("/home")
+    } else {
+      setDepositErrorMessage(response.msg)
+    }
+    setisSubmitting(false)
+  }
 
   return (
     <>
@@ -123,7 +142,7 @@ export default function UserDetails() {
                     Deposit
                   </button>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item marg">
                   <button
                     type="button"
                     className="btn btn-outline-danger"
@@ -134,6 +153,28 @@ export default function UserDetails() {
                     Withdraw
                   </button>
                 </li>
+                <li className="nav-item marg">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => {
+                      setPackageModal(true);
+                    }}
+                  >
+                    Update
+                  </button>
+                </li>
+                {/* <li className="nav-item marg">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => {
+                      setPackageModal(true);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -172,11 +213,11 @@ export default function UserDetails() {
                           <td> {user.Mobile_Number} </td>
                           <td></td>
                         </tr>
-                        {/* <tr>
-                          <th>Email</th>
-                          <td> {user.email} </td>
+                        <tr>
+                          <th>Package</th>
+                          <td> {user.package} </td>
                           <td></td>
-                        </tr> */}
+                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -403,6 +444,104 @@ export default function UserDetails() {
               <>
                 <Button color="primary" onClick={onSubmitWitrhdraw}>
                   Withdraw
+                </Button>
+                <Button color="danger" onClick={toggle}>
+                  Cancel
+                </Button>
+              </>
+            )}
+          </ModalFooter>
+        </Modal>
+      </div>
+
+      <div className="container">
+        <Modal isOpen={packageModal}>
+          <ModalHeader>Update Info</ModalHeader>
+          {depositSuccessMessage && depositSuccessMessage !== "" && (
+            <div className="alert alert-info" role="alert">
+              {depositSuccessMessage}
+            </div>
+          )}
+          {depositErrorMessage && depositErrorMessage !== "" && (
+            <div className="alert alert-info" role="alert">
+              {depositErrorMessage}
+            </div>
+          )}
+          {validationErrors &&
+            validationErrors["_package"] &&
+            Object.entries(validationErrors).length >= 1 && (
+              <div className="alert alert-info" role="alert">
+                <ul>
+                  {Object.keys(validationErrors).map((keys, index) => {
+                    return (
+                      <li key={index} className="text-black-50">
+                        {validationErrors[keys]}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+          <ModalBody>
+            <form>
+              <div className="form-group">
+                <label htmlFor="exampleInputEmail1" className="mb-3">
+                  Select Package
+                </label>
+                <select
+                  type="select"
+                  className="form-control"
+                  onChange={(e) => {
+                    if (!e.target.value) {
+                      setvalidationErrors({
+                        ...validationErrors,
+                        _package: "Package is required",
+                      });
+                    }
+                    if (e.target.value) {
+                      delete validationErrors["_package"];
+                    }
+                    set_Package(e.target.value);
+                  }}
+                  value={_package}
+                  onBlur={() => {
+                    if (!_package) {
+                      setvalidationErrors({
+                        ...validationErrors,
+                        _package: "Package is required",
+                      });
+                    }
+                    if (_package) {
+                      delete validationErrors["_package"];
+                    }
+                  }}
+                  >
+
+                        <option value="">Select A Package</option>
+                        <option value="STANDARD">Standard</option>
+                        <option value="PREMIUM">Premium</option>
+                        <option value="PLATINUM">Platinum</option>
+                        <option value="GOLD">Gold</option>
+                        <option value="DIAMOND">Diamond</option>
+                      
+                  </select>
+              </div>
+            </form>
+          </ModalBody>
+          <ModalFooter>
+            {isSubmitting ? (
+              <button className="btn btn-primary" type="button" disabled>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Loading...
+              </button>
+            ) : (
+              <>
+                <Button color="primary" onClick={onSubmitPackage}>
+                  Update Package
                 </Button>
                 <Button color="danger" onClick={toggle}>
                   Cancel

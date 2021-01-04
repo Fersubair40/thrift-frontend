@@ -66,6 +66,17 @@ const Api = {
       return err.data;
     }
   },
+  updatePackage: async (user_id, data) => {
+    try {
+      const response = await axios.put(
+        `/${user_id}/update-package`,
+        JSON.stringify(data)
+      );
+      return response.data;
+    } catch (err) {
+      return err.data;
+    }
+  },
 };
 
 export default Api;
