@@ -77,6 +77,16 @@ const Api = {
       return err.data;
     }
   },
+  deleteUser: async (username) => {
+    try {
+      const response = await axios.delete(
+        `${username}/delete-user`,
+      )
+      return response.data;
+    } catch (err) {
+      return err;
+    }
+  },
 };
 
 export default Api;
