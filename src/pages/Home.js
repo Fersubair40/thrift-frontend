@@ -78,6 +78,17 @@ export default function Home() {
                     Create Account
                   </Link>
                 </li>
+                <li className="nav-item">
+                <button
+                    type="button"
+                    className="btn btn-outline-success"
+                    onClick={() => {
+                      setDeleteModal(true)
+                    }}
+                  >
+                    Delete Account
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
@@ -122,7 +133,7 @@ export default function Home() {
                             {" "}
                             View Transactions{" "}
                           </Link>
-                          <button
+                          {/* <button
                             className="btn-danger mt-3"
                             type="button"
                             onClick={() => {
@@ -131,7 +142,7 @@ export default function Home() {
                           >
                             {" "}
                             Delete Account{" "}
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     </div>
