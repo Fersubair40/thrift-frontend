@@ -84,7 +84,7 @@ const Api = {
       )
       return response.data;
     } catch (err) {
-      return err;
+      return err.data;
     }
   },
 };
